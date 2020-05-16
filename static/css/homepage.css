@@ -1,0 +1,246 @@
+*{
+	margin:0px;
+	padding:0px;
+	box-sizing: border-box;
+}
+
+.bgimage{
+	/*background-image: url('9.jpg');
+	background-size: 100% 110%;
+	width: 100%;
+	height: 100vh;*/
+	background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(9.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+  	background-attachment: fixed;
+}
+
+.menu{
+	width: 100%;
+	height: 100px;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.text h4{
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+/*body{
+	font:15px/1.3 'Open Sans', sans-serif;
+	background:#EEE;
+}*/
+
+
+.leftmenu{
+	width: 20%;
+	line-height: 100px;
+	float: left;
+}
+
+.leftmenu h4{
+	padding-left: 70px;
+	font-weight: bold;
+	color: white;
+	font-size: 22px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.leftmenu h4:hover{
+	color: #fc0373;
+}
+
+.rightmenu{
+	width:70%;
+	height: 100px;
+	float: right;
+/*	background-color: red; */
+}
+
+.rightmenu ul{
+	margin-left: 200px;
+}
+
+.rightmenu ul li {
+	font-family: 'Montserrat', sans-serif;
+	display: inline-block;
+	list-style: none;
+	font-size: 15px;
+	color:white;
+	font-weight: bold;
+	line-height: 100px;
+	margin-left: 40px;
+	text-transform: uppercase;
+}
+
+.rightmenu ul li:hover{
+	color: orange;
+}
+
+.hbutton{
+	position: absolute;
+	top:43%;
+	left:13%;
+	/*transform: translate(-50%,-50%);*/
+}
+
+.pbutton{
+	position: absolute;
+	top:57%;
+	left:13%;
+	/*transform: translate(-50%,-50%);*/
+}
+
+.btn{
+	border: 1px solid #fff;
+	padding: 10px 30px;
+	color:#fff;
+	font-size: 18px;
+	font-family: 'Montserrat', sans-serif;
+	text-decoration: none;
+	transition: 0.6s ease;
+}
+
+.btn:hover{
+	background-color: #fff;
+	color: #000;
+}
+
+
+.h_hidden{
+	position: absolute;
+	top:18%;
+	left:35%;
+	/*transform: translate(-50%,-50%);*/
+}
+
+.p_hidden{
+	position: absolute;
+	top:18%;
+	left:35%;
+	/*transform: translate(-50%,-50%);*/
+}
+
+
+#result{
+	position: relative;
+	text-align: center;
+	font-family: 'Fondamento', sans-serif;
+	padding: 45px;
+	font-size: 35px;
+}
+
+#p_result{
+	position: relative;
+	text-align: center;
+	font-family: 'Fondamento', sans-serif;
+	padding: 45px;
+	font-size: 35px;
+}
+/*.signup-page{
+	width:400px;
+	padding: 10% 0 0;
+	margin: auto;
+}
+*/
+.form1{
+	position: relative;
+	z-index: 1;
+	background:rgba(7,40,195,0.4);
+	width: 450px;
+	margin: 0 auto 108px;
+	padding: 45px;
+	text-align: center;
+}
+
+.signup-form{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
+	color: white;
+	text-align: left;
+}
+
+.textbox{
+	font-family:"Roboto",sans-serif;
+	outline:1;
+	background:#f2f2f2;
+	width:100%;
+	border:0;
+	margin:0 0 15px;
+	padding:15px;
+	box-sizing: border-box;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.sub_btn{
+	font-family: "Roboto",sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background:#4CAF50;
+	width:100%;
+	border:0;
+	padding: 15px;
+	color: #FFFFFF;
+	font-size: 14px;
+}
+
+#firstlist{
+	color: orange;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  top: 10;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=email], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=email]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}

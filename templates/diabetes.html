@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/heartstyle.css') }}">
+		 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet'>
+		  <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+
+
+
+		  <script>
+			xhr=new XMLHttpRequest();
+			scrollAmt=25;
+			count=0;
+			function getChunk(){
+				//alert("hello");
+				scroll=document.body.scrollTop||document.documentElement.scrollTop;
+				if(scroll>scrollAmt){
+					//alert("hello2");
+					scrollAmt=scroll;
+					xhr.onreadystatechange=showChunk;
+					xhr.open("POST","/get_dia",false);
+					console.log(count);
+					xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+					xhr.send("count="+count++);
+				}
+			}
+			function showChunk(){
+			console.log(xhr.status)
+				if(xhr.readyState==4 && xhr.status==200){
+				//console.log("hello");
+					document.getElementById("content").innerHTML+=xhr.responseText;
+					// alert(xhr.responseText);
+				}
+			}
+			//alert("Hello0");
+			window.onscroll=getChunk;
+		</script>
+</head>
+<body>
+
+	<div class="bgimage">
+		
+		<div class="menu">
+			
+			<div class="leftmenu">
+			<a href="{{ url_for('home')}}"><h4> HEART HOSPITAL </h4></a>
+			</div>
+		
+			<div class="rightmenu">
+				<ul>
+					<a href="{{ url_for('home')}}"><li> HOME </li></a>
+					<a href="{{ url_for('doctor')}}"><li> Our Doctors</li></a>
+					<a href="{{ url_for('about_heart')}}"><li> About Heart </li></a>
+					<a href="{{ url_for('about_diabetes')}}"><li> About Diabetes</li></a>
+					<li> Be Healthy :)</li>
+				</ul>
+			</div>
+
+			
+			</div>
+			<div class='mydata'>
+				<p class="mytext" id="content"></p>
+			</div>
+		<div class="bgimage img3"></div>
+		<div class="bgimage img2"></div>
+		<div class="bgimage img3"></div>
+		<div class="bgimage img4"></div>
+		<div class="bgimage img3"></div>
+		<div class="bgimage img4"></div>
+		<div class="bgimage img2"></div>
+		<div class="bgimage img2"></div>
+		
+	</div>
+
+</body>
+</html>

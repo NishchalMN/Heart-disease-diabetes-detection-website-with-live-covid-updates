@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<head>
+	<title>Cardio Hospital</title>
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/homepage.css') }}">
+	
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet'>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+
+	<script type="text/javascript">
+
+	// heart part
+      function heart_func() {
+        var xhr = new XMLHttpRequest();
+        var result = document.getElementById('result');
+        xhr.onreadystatechange = function()
+        {
+          if(this.readyState == 4 && this.status == 200) {
+            var res = this.responseText;
+            var ans = "Positive";
+            var pos = res.localeCompare(ans);
+            if (pos == 0) {
+            	result.innerHTML = "We are sorry to inform you that the result is " + res;
+            	result.style.color = "#FF2400";
+            }
+            else{
+            	result.innerHTML = "No need to worry! The result is " + res;
+            	result.style.color = "#6CBB3C";
+            }
+          
+          } 
+          else {
+            result.innerHTML = "Processing";
+          }
+        }
+ 
+        var fd1 = new FormData(document.getElementById('heart_form'));
+        xhr.open('POST', '/heart_process', true);
+        // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+        xhr.send(fd1);
+      }
+
+    // diabetes part
+      function pima_func() {
+        var xhr = new XMLHttpRequest();
+        var result = document.getElementById('p_result');
+        xhr.onreadystatechange = function()
+        {
+          if(this.readyState == 4 && this.status == 200) {
+            var res = this.responseText;
+            var ans = "Positive";
+            var pos = res.localeCompare(ans);
+            if (pos == 0) {
+            	result.innerHTML = "We are sorry to inform you that the result is " + res;
+            	result.style.color = "#FF2400";
+            }
+            else{
+            	result.innerHTML = "No need to worry! The result is " + res;
+            	result.style.color = "#6CBB3C";
+            }
+          
+          } 
+          else {
+            result.innerHTML = "Processing";
+          }
+        }
+ 
+        var fd2 = new FormData(document.getElementById('pima_form'));
+        xhr.open('POST', '/pima_process', true);
+        // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+        xhr.send(fd2);
+      }
+
+ 	// covid part
+     function covid_func() {
+       var xhr = new XMLHttpRequest();
+       xhr.onreadystatechange = function()
+       {
+         if(this.readyState == 4 && this.status == 200) {
+           alert(this.responseText);
+         } 
+       }
+     
+       var fd3 = new FormData(document.getElementById('covid-form'));
+       xhr.open('POST', '/covid_process', true);
+       // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+       xhr.send(fd3);
+     }
+
+    </script>
+
+</head>
+
+<body class="bgimage">
+<iframe name="ifr" style="display: none;"></iframe>
+	<div class="menu">
+		<div class="leftmenu">
+			<a href="{{ url_for('home')}}"><h4> HEART HOSPITAL </h4></a>
+		</div>
+		
+		<div class="rightmenu">
+			<ul>
+				<a href="{{ url_for('home')}}"><li id="firstlist"> HOME </li></a>
+				<a href="{{ url_for('doctor')}}"><li> Our Doctors</li></a>
+				<a href="{{ url_for('about_heart')}}"><li> About Heart </li></a>
+				<a href="{{ url_for('about_diabetes')}}"><li> About Diabetes</li></a>
+				<li onclick="openForm()"> Covid-19 updates</li>
+			</ul>
+		</div>
+	</div>
+
+
+<!-- heart part -->
+	<div ng-app="h_app" ng-controller="h_ctrl">
+		<div class="hbutton">
+			<h4 class="btn" ng-click="h_func()"> Heart </h4>
+		</div>
+		<div class="h_hidden" ng-show="showMe">
+	    	<div class="form1">
+		    	<form id="heart_form" class="signup-form" method="post" action="heart_process" target="ifr">
+		    		<input type="text" name="name" class="textbox" placeholder="Enter your name"/><br>
+		    		<input type="number" name="age" class="textbox" placeholder="Enter your age" min="1" max="150" required /><br>
+		    		Sex : Male <input type="radio" name="sex" value="M"> Female <input type="radio" name="sex" value="F"><br><br>
+		    		<input type="number" name="cp" class="textbox" placeholder="cp chest pain type" min="0" max="3" required/><br>
+		    		<input type="number" name="trestbps" class="textbox" placeholder="trestbps resting blood pressure (in mm Hg" required/><br>
+		    		<input type="number" name="chol" class="textbox" placeholder="cholserum cholestoral in mg/dl" required/><br>
+		    		fbs  > 120 mg/dl : yes <input type="radio" name="fbs" value="1"> no <input type="radio" name="fbs" value="0"><br><br>
+		    		<input type="number" name="restecg" class="textbox" placeholder="restecgresting ECG results" min="0" max="2" required/><br>
+		    		<input type="number" name="thalac" class="textbox" placeholder="thalachmaximum heart rate achieved" required/><br>
+					exang : yes <input type="radio" name="exang" value="1"> no <input type="radio" name="exang" value="0"><br><br>
+					<input type="number" name="oldpeak" class="textbox" placeholder="oldpeakST depression relative to rest" min="0" step="0.1" required/><br>
+					<input type="number" name="slope" class="textbox" placeholder="slope of the peak exercise ST segment" min="0" max="2" required/><br>
+					<input type="number" name="ca" class="textbox" placeholder="number of vessels (0-4) colored by flourosopy" min="0" max="4" required/><br>
+					<input type="number" name="thal" class="textbox" placeholder="thal 1) 3 = normal; 2) 6 = fixed defect; 3) 7 = reversable defect" min="0" max="3" required/><br>
+					<button class="sub_btn" onclick="heart_func();">Submit</button>
+					<div id="result"></div>
+				</form>    		
+		    </div>
+		</div>
+
+
+<!-- pima part -->
+		<div class="pbutton">
+			<h4 class="btn" ng-click="p_func()"> Diabetes </h4>
+		</div>
+		<div class="p_hidden" ng-show="p_showMe">
+	    	<div class="form1">
+		    	<form id="pima_form" class="signup-form" method="post" action="pima_process" target="ifr">
+		    		<input type="text" name="name" class="textbox" placeholder="Enter your name"/><br>
+		    		<input type="number" name="age" class="textbox" placeholder="Enter your age" min="1" max="150" required /><br>
+		    		Sex : Male <input type="radio" name="sex" value="M"> Female <input type="radio" name="sex" value="F"><br><br>
+		    		<input type="number" name="preg" class="textbox" placeholder="number of times pregnant" min="0" max="20" required/><br>
+		    		<input type="number" name="glucose" class="textbox" placeholder="Plasma glucose concentration" required/><br>
+		    		<input type="number" name="bp" class="textbox" placeholder="Diastolic blood pressure in mm/Hg" required/><br>
+		    		<input type="number" name="st" class="textbox" placeholder="Triceps skin fold thickness (mm)" min="0" max="100" required/><br>
+		    		<input type="number" name="insulin" class="textbox" placeholder="2-Hour serum insulin (mu U/ml)" required/><br>
+					<input type="number" name="bmi" class="textbox" placeholder="Body mass index (weight in kg/(height in m)^2)" min="0" step="0.1" required/><br>
+					<input type="number" name="dpf" class="textbox" placeholder="Diabetes pedigree function" min="0" max="3" step="0.001" required/><br>
+					<button class="sub_btn" onclick="pima_func();">Submit</button>
+					<div id="p_result"></div>
+				</form>    		
+		    </div>
+		   
+		</div>
+	</div>
+
+<!-- corona part -->
+	<div class="form-popup" id="myForm">
+	  <form class="form-container" id="covid-form" method="post" action="" target="ifr">
+	    <h2>Do you want updates to your email</h2>
+	    <br>
+	    <label for="email"><b>Email</b></label>
+	    <input type="email" placeholder="Enter Email-id" name="email" required>
+	    <br>
+	    <b>Subscribe : Yes <input type="radio" name="subscribe" value="Y"> No <input type="radio" name="subscribe" value="N"></b><br><br>
+	    <button class="btn" onclick="covid_func()">Confirm</button>
+	    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+	  </form>
+	</div>
+
+<!-- control part -->
+	<script>
+	var h_app = angular.module('h_app', []);
+	h_app.controller('h_ctrl', function($scope) {
+	    $scope.showMe = false;
+	    $scope.p_showMe = false;
+	    $scope.h_func = function() {
+	        $scope.showMe = !$scope.showMe;
+	        $scope.p_showMe = false;
+	    }
+	    $scope.p_func = function() {
+	        $scope.p_showMe = !$scope.p_showMe;
+	        $scope.showMe = false;
+	    }
+	});
+
+	function openForm() {
+	  document.getElementById("myForm").style.display = "block";
+	}
+
+	function closeForm() {
+	  document.getElementById("myForm").style.display = "none";
+	}
+	</script>
+
+</body>
+</html>
